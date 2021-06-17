@@ -98,4 +98,8 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public void dvdfdf(String password) {
+        this.password = password;
+    }
 }
