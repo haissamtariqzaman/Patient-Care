@@ -84,4 +84,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void dvdfdf(String password) {
+        this.password = password;
+    }
 }
