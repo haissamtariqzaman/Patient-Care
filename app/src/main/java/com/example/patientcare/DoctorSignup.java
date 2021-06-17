@@ -3,11 +3,14 @@ package com.example.patientcare;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public class DoctorSignup extends AppCompatActivity {
 
@@ -36,5 +39,31 @@ public class DoctorSignup extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, specialities);
         speciality.setAdapter(adapter);
+    }
+
+    public void signupClicked()
+    {
+        String d=date.getText().toString();
+        int dt=0,month=0,year=0;
+
+        StringBuilder sb=new StringBuilder();
+
+        for(int x=0;x<d.length();x++) {
+            if (d.charAt(x) == '/') {
+                if (dt == 0) {
+                    dt = parseInt(sb.toString());
+                    sb = new StringBuilder();
+                } else {
+                    month = parseInt(sb.toString());
+                    sb = new StringBuilder();
+                }
+            } else {
+                sb = sb.append(d.charAt(x));
+            }
+        }
+        year=parseInt(sb.toString());
+
+        Doctor doc=new Doctor(name.getText().toString(),email.getText().toString(),ph.getText().toString(),addr.getText().toString(),dt,month,year,"123",speciality.getSelectedItem().toString());
+        Log.d("mydchck",doc.toString());
     }
 }
