@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button signInButton;
     private Button signUpButton;
-    private  final int REQUEST_CODE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInClicked();
+                signUpClicked();
             }
         });
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signUpClicked();
+                signInClicked();
             }
         });
     }
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void signUpClicked(){
         Intent i=new Intent(this,SignupActivity.class);
-        startActivityForResult(i,REQUEST_CODE);
+        startActivityForResult(i,1);
     }
-
 }
