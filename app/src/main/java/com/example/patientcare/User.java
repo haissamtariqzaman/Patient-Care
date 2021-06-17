@@ -1,5 +1,7 @@
 package com.example.patientcare;
 
+import java.util.UUID;
+
 public class User {
     private String name;
     private String email;
@@ -97,9 +99,5 @@ public class User {
                 ", year=" + year +
                 ", password='" + password + '\'' +
                 '}';
-    }
-
-    public void dvdfdf(String password) {
-        this.password = password;
     }
 }

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -22,6 +24,8 @@ public class DoctorSignup extends AppCompatActivity {
     private EditText pass;
     private Spinner speciality;
 
+    private Button signup;
+
     private String[] specialities=new String[]{"Skin Specialist","Gynecologist","Urologist","Child Specialist","Orthopedic Surgeon","Consultant Physician","ENT Specialist","Neurologist"};
 
 
@@ -36,9 +40,18 @@ public class DoctorSignup extends AppCompatActivity {
         date=findViewById(R.id.editTextDate);
         addr=findViewById(R.id.editTextTextPostalAddress);
         speciality=findViewById(R.id.speciality);
+        pass=findViewById(R.id.editTextTextPassword3);
+        signup=findViewById(R.id.registerButton);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, specialities);
         speciality.setAdapter(adapter);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signupClicked();
+            }
+        });
     }
 
     public void signupClicked()
@@ -63,7 +76,7 @@ public class DoctorSignup extends AppCompatActivity {
         }
         year=parseInt(sb.toString());
 
-        Doctor doc=new Doctor(name.getText().toString(),email.getText().toString(),ph.getText().toString(),addr.getText().toString(),dt,month,year,"123",speciality.getSelectedItem().toString());
+        Doctor doc=new Doctor(name.getText().toString(),email.getText().toString(),ph.getText().toString(),addr.getText().toString(),dt,month,year,pass.getText().toString(),speciality.getSelectedItem().toString());
         Log.d("mydchck",doc.toString());
     }
 }

@@ -8,4 +8,11 @@ public class Doctor extends User {
         super(name, email, phoneNumber, address, date, month, year, password);
         speciality=spc;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "speciality='" + speciality + '\'' +
+                "} " + super.toString();
+    }
 }
