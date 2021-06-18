@@ -1,24 +1,39 @@
 package com.example.patientcare;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
+import java.util.HashMap;
 
 public class DAOPatient {
-    private final DatabaseReference databaseReference;
+    private final FirebaseFirestore db;
+    private final FirebaseAuth mAuth;
 
     public DAOPatient()
     {
-        FirebaseDatabase db=FirebaseDatabase.getInstance();
-        databaseReference=db.getReference(Patient.class.getSimpleName());
+        db= FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
-    public Task<Void> addPatient(Patient p)
+    public Task<AuthResult> addPatient(Patient p)
     {
-        if (p!=null)
-        {
-            return databaseReference.push().setValue(p);
-        }
-        return null;
+        return mAuth.createUserWithEmailAndPassword(p.getEmail(),p.getPassword());
+    }
+
+    public Task<Void> addPatientData(Patient p)
+    {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("name",p.getName());
+        map.put("email",p.getEmail());
+        map.put("phoneNumber",p.getPhoneNumber());
+        map.put("address",p.getAddress());
+        map.put("date",p.getDate());
+        map.put("month",p.getMonth());
+        map.put("year",p.getYear());
+
+        return db.collection("Patient").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(map);
     }
 }

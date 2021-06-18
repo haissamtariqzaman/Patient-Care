@@ -9,6 +9,10 @@ public class Doctor extends User {
         speciality=spc;
     }
 
+    public String getSpeciality() {
+        return speciality;
+    }
+
     @Override
     public String toString() {
         return "Doctor{" +
