@@ -157,7 +157,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12"
-        app:srcCompat="@drawable/iconfinder_5929214_avatar_doctor_health_hospital_man_icon_512px" />
+        app:srcCompat="@drawable/iconfinder_5929214_avatar_doctor_health_hospital_man_icon_512px"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -169,10 +170,11 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.379"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/textView9"

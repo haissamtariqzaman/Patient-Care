@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientHomeScreen">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="135dp"
+        android:layout_height="133dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/OpenFindADoctor"
+        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/iconfinder_5929214_avatar_doctor_health_hospital_man_icon_512px" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="158dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="Patient Care"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/OpenPrescriptions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <Button
+        android:id="@+id/OpenFindADoctor"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:drawableTop="@drawable/iconfinder_6014549_asian_coronavirus_doctor_female_icon_128px"
+        android:freezesText="false"
+        android:text="Find a Doctor"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:layout_constraintBottom_toTopOf="@+id/OpenCurrAppoint"
+        app:layout_constraintEnd_toStartOf="@+id/OpenPrescriptions"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
+
+    <Button
+        android:id="@+id/OpenPrescriptions"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:drawableTop="@drawable/iconfinder_5959971_prescription_coronavirus_virus_pills_medicine_icon_128px"
+        android:text="Prescriptions"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:layout_constraintBottom_toTopOf="@+id/OpenPrevAppoint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
+
+
+    <Button
+        android:id="@+id/OpenCurrAppoint"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:autoText="false"
+        android:drawableTop="@drawable/iconfinder_897245_clock_manage_schedule_time_icon_128px"
+        android:includeFontPadding="false"
+        android:text="Up Comming Appointments"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.759"
+        app:strokeColor="#FFEB3B" />
+
+    <Button
+        android:id="@+id/OpenPrevAppoint"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:autoText="false"
+        android:drawableTop="@drawable/iconfinder_4732028_calendar_date_done_event_month_icon_128px"
+        android:includeFontPadding="false"
+        android:text="Previous Appointments"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toEndOf="@+id/OpenCurrAppoint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.759"
+        app:strokeColor="#FFEB3B" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
