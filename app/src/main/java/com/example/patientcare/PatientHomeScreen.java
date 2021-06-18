@@ -3,18 +3,24 @@ package com.example.patientcare;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PatientHomeScreen extends AppCompatActivity {
+    private Button OpenFindADoctor;
+    private Button OpenPrescriptions;
+    private Button OpenCurrAppoint;
+    private Button OpenPrevAppoint;
 
+    private final int requestCode_findDoctor;
 
-    private ImageButton OpenFindADoctor;
-    private ImageButton OpenPrescriptions;
-    private ImageButton OpenCurrAppoint;
-    private ImageButton OpenPrevAppoint;
+    public PatientHomeScreen()
+    {
+        requestCode_findDoctor=1;
+    }
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -50,6 +56,8 @@ public class PatientHomeScreen extends AppCompatActivity {
     }
 
     private void FindADoctorClicked() {
+        Intent i=new Intent(this,FindDoctor.class);
+        startActivityForResult(i,requestCode_findDoctor);
     }
 
     private void PrescriptionsClicked() {
@@ -60,5 +68,4 @@ public class PatientHomeScreen extends AppCompatActivity {
 
     private void PrevAppointClicked() {
     }
-
 }
