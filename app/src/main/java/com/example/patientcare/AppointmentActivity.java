@@ -68,7 +68,7 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
                                         document.get("time").toString(),
                                         document.get("room").toString()
                                 );
-                                appointment.appointment_id = document.getId();
+                                appointment.setAppointment_id(document.getId());
                                 appointmentList.add(appointment);
                             }
 

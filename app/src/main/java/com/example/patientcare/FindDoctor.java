@@ -1,6 +1,7 @@
 package com.example.patientcare;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -33,6 +34,8 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
     private  Button ent;
     private Button nuero;
 
+    private Patient patient;
+
     private DAOFindDoctor daoFindDoctor;
 
     private ArrayList<Doctor> doctors;
@@ -41,6 +44,9 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speciality_ui);
+
+        Intent i=getIntent();
+        patient=(Patient) i.getSerializableExtra("patient");
 
         skin=findViewById(R.id.button_skin);
         gyne=findViewById(R.id.button_gyne);
@@ -106,15 +112,28 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
                     for(QueryDocumentSnapshot doc : task.getResult())
                     {
                         Doctor d=doc.toObject(Doctor.class);
+                        d.setDocId(doc.getId());
                         doctors.add(d);
                     }
 
                     Intent i=new Intent(FindDoctor.this,RecyclerView_Doctors.class);
                     i.putExtra("doctors",doctors);
+                    i.putExtra("patient",patient);
                     startActivityForResult(i,1);
                 }
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            Intent intent=new Intent();
+            setResult(RESULT_OK,intent);
+            super.onBackPressed();
+        }
+    }
 }
