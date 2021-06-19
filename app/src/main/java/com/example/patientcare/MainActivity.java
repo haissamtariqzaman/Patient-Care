@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                             if(task.getResult().isEmpty())
                             {
-                                Toast.makeText(MainActivity.this,"Doctor!",Toast.LENGTH_SHORT).show();
+                                Intent i=new Intent(MainActivity.this, DoctorHomeScreen.class);
+                                startActivity(i);
                             }else{
                                 Intent i=new Intent(MainActivity.this,PatientHomeScreen.class);
                                 startActivity(i);
