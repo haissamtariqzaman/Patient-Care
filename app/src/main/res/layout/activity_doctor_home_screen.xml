@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorHomeScreen">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/iconfinder_5929214_avatar_doctor_health_hospital_man_icon_512px" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="Patient Care"
+        android:layout_marginTop="77.5dp"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="20dp" />
+
+    <TextView
+        android:id="@+id/doctor_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="Welcom Dr. Ahmad"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/OpenCurrAppoint"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        android:layout_marginHorizontal="20dp" />
+
+
+
+    <Button
+        android:id="@+id/OpenCurrAppoint"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:autoText="false"
+        android:drawableTop="@drawable/iconfinder_897245_clock_manage_schedule_time_icon_128px"
+        android:includeFontPadding="false"
+        android:text="Up Comming Appointments"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/OpenPrevAppoint"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_welcome"
+        app:strokeColor="#FFEB3B" />
+
+    <Button
+        android:id="@+id/OpenPrevAppoint"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
+        android:autoText="false"
+        android:drawableTop="@drawable/iconfinder_4732028_calendar_date_done_event_month_icon_128px"
+        android:includeFontPadding="false"
+        android:text="Previous Appointments"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/teal_700"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toEndOf="@+id/OpenCurrAppoint"
+        app:layout_constraintTop_toBottomOf="@+id/doctor_welcome"
+        app:strokeColor="#FFEB3B" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

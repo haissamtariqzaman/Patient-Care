@@ -11,6 +11,9 @@
         android:theme="@style/Theme.PatientCare">
         <activity android:name=".PatAppointmentActivity"></activity>
         <activity android:name=".RecyclerView_Doctors" />
+        <activity android:name=".AppointmentActivity"></activity>
+        <activity android:name=".DoctorHomeScreen"
+            android:label="Doctor's Home"/>
         <activity android:name=".FindDoctor" />
         <activity android:name=".PatientHomeScreen" />
         <activity android:name=".PatientSignup" />
@@ -19,7 +22,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
