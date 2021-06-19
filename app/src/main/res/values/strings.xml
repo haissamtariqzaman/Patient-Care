@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Patient Care</string>
     <string name="book_appointment">Book Appointment</string>
+    <string name="appointment">Appointment</string>
 </resources>
