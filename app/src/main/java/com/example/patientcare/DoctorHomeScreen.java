@@ -34,12 +34,14 @@ public class DoctorHomeScreen extends AppCompatActivity {
     private void CurrAppointClicked() {
         Intent intent = new Intent(this, AppointmentActivity.class);
         intent.putExtra("name", "Current Appointments");
+        intent.putExtra("isDone", false);
         startActivity(intent);
     }
 
     private void PrevAppointClicked() {
         Intent intent = new Intent(this, AppointmentActivity.class);
         intent.putExtra("name", "Previous Appointments");
+        intent.putExtra("isDone", true);
         startActivity(intent);
     }
 }

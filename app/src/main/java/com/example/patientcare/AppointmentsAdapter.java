@@ -51,7 +51,7 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         }
 
         public void bind(Appointment appointment) {
-            patient_name.setText(appointment.patientName);
+            patient_name.setText(appointment.patient_name);
             date.setText(appointment.date);
             time.setText(appointment.time);
             room.setText(appointment.room);
