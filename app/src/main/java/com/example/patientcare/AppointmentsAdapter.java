@@ -21,6 +21,11 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         this.appointments = appointments;
     }
 
+    public AppointmentsAdapter(List<Appointment> appointments, AppointmentClickListener appointmentClickListener) {
+        this.appointments = appointments;
+        this.appointmentClickListener = appointmentClickListener;
+    }
+
     @NonNull
     @NotNull
     @Override
@@ -59,10 +64,10 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         }
 
         public void bind(Appointment appointment) {
-            patient_name.setText(appointment.getPatient_name());
-            date.setText(appointment.getDate());
-            time.setText(appointment.getTime());
-            room.setText(appointment.getRoom());
+            patient_name.setText("Name: " + appointment.getPatient_name());
+            date.setText("Date: " + appointment.getDate());
+            time.setText("Time: " + appointment.getTime());
+            room.setText("Room: " + appointment.getRoom());
         }
     }
 

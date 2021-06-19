@@ -74,13 +74,31 @@ public class MainActivity extends AppCompatActivity {
                                 p.setPatientId(d.getId());
                             }
 
-                            if(p==null)
+                            if(p!=null)
                             {
-                                Intent i=new Intent(MainActivity.this, DoctorHomeScreen.class);
-                                startActivity(i);
-                            }else{
                                 Intent i=new Intent(MainActivity.this,PatientHomeScreen.class);
                                 i.putExtra("patient",p);
+                                startActivity(i);
+                            }
+                        }
+                    });
+
+                    daoSignin.checkDoctor().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+
+                            Doctor doctor = null;
+
+                            for(DocumentSnapshot d:task.getResult())
+                            {
+                                doctor = d.toObject(Doctor.class);
+                                doctor.setDocId(d.getId());
+                            }
+
+                            if(doctor!=null)
+                            {
+                                Intent i=new Intent(MainActivity.this, DoctorHomeScreen.class);
+                                i.putExtra("doctor",doctor);
                                 startActivity(i);
                             }
                         }

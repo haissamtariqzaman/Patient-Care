@@ -45,11 +45,17 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
         appointmentsRv.setHasFixedSize(true);
         appointmentsRv.setLayoutManager(new LinearLayoutManager(this));
         appointmentList = new ArrayList<Appointment>();
-        adapter = new AppointmentsAdapter(appointmentList);
+        adapter = new AppointmentsAdapter(appointmentList, this);
         appointmentsRv.setAdapter(adapter);
 
         getAppointments(isDone);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getAppointments(isDone);
     }
 
     public void getAppointments(boolean isDone) {
@@ -58,6 +64,9 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+
+                            appointmentList.clear();
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
 //                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 Appointment appointment = new Appointment(
@@ -66,7 +75,9 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
                                         document.get("doctor_id").toString(),
                                         document.get("date").toString(),
                                         document.get("time").toString(),
-                                        document.get("room").toString()
+                                        document.get("room").toString(),
+                                        document.get("prescription").toString(),
+                                        (boolean) document.get("done")
                                 );
                                 appointment.setAppointment_id(document.getId());
                                 appointmentList.add(appointment);
