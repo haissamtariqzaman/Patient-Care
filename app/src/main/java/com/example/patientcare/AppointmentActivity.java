@@ -17,7 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppointmentActivity extends AppCompatActivity {
+public class AppointmentActivity extends AppCompatActivity implements AppointmentsAdapter.AppointmentClickListener {
 
     RecyclerView appointmentsRv;
     AppointmentsAdapter adapter;
@@ -79,5 +79,12 @@ public class AppointmentActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onAppointmentClick(Appointment appointment) {
+        Intent intent = new Intent(this, AppointmentDetail.class);
+        intent.putExtra("appointment", appointment);
+        startActivity(intent);
     }
 }
