@@ -187,6 +187,10 @@ public class PatAppointmentActivity extends AppCompatActivity {
 
     public void bookClicked()
     {
-        Appointment a=new Appointment();
+        Appointment a=new Appointment(patient.getName(),patient.getPatientId(),doctor.getDocId(),select_date.getText().toString(),spinner_time.getSelectedItem().toString(),"1");
+        daoAppointment.addAppointmentData(a);
+        Intent intent=new Intent();
+        setResult(RESULT_OK,intent);
+        super.onBackPressed();
     }
 }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Doctor extends User implements Serializable {
 
     private String speciality;
+    private String docId;
 
     public Doctor()
     {
@@ -25,5 +26,17 @@ public class Doctor extends User implements Serializable {
         return "Doctor{" +
                 "speciality='" + speciality + '\'' +
                 "} " + super.toString();
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
     }
 }
