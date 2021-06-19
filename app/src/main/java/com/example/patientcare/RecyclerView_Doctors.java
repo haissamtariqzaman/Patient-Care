@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class RecyclerView_Doctors extends AppCompatActivity {
+public class RecyclerView_Doctors extends AppCompatActivity implements DoctorAdapter.onClickListener{
 
     private RecyclerView recyclerView;
     private DoctorAdapter doctorAdapter;
@@ -26,7 +26,15 @@ public class RecyclerView_Doctors extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        doctorAdapter=new DoctorAdapter(doctors,this);
+        doctorAdapter=new DoctorAdapter(doctors,this,this);
         recyclerView.setAdapter(doctorAdapter);
+    }
+
+    @Override
+    public void onDoctorClicked(int index) {
+        Doctor d=doctors.get(index);
+        Intent i=new Intent(this,AppointmentActivity.class);
+        i.putExtra("doctor",d);
+        startActivityForResult(i,1);
     }
 }

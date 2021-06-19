@@ -116,5 +116,4 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
             }
         });
     }
-
 }
