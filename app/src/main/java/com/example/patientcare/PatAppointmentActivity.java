@@ -34,9 +34,10 @@ public class PatAppointmentActivity extends AppCompatActivity {
     private Button book_button;
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
-    private DAOAppointment daoAppointment;
+    private AppointmentDao daoAppointment;
 
     private Doctor doctor;
+    private Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class PatAppointmentActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         doctor=(Doctor) intent.getSerializableExtra("doctor");
+        patient=(Patient)intent.getSerializableExtra("patient");
 
         dr_name=findViewById(R.id.dr_name);
         dr_speciality=findViewById(R.id.dr_speciality);
@@ -55,7 +57,7 @@ public class PatAppointmentActivity extends AppCompatActivity {
         dr_name.setText(doctor.getName());
         dr_speciality.setText(doctor.getSpeciality());
 
-        daoAppointment=new DAOAppointment();
+        daoAppointment=new AppointmentDao();
 
         select_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +69,25 @@ public class PatAppointmentActivity extends AppCompatActivity {
         dateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month++;
-                StringBuilder sb=new StringBuilder();
-                sb.append(dayOfMonth).append("/").append(month).append("/").append(year);
-                select_date.setText(sb.toString());
-
-                updateTimeSlots();
+                dataSetListener(view,year,month,dayOfMonth);
             }
         };
+
+        book_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookClicked();
+            }
+        });
+    }
+
+    public void dataSetListener(DatePicker view, int year, int month, int dayOfMonth)
+    {
+        month++;
+        StringBuilder sb=new StringBuilder();
+        sb.append(dayOfMonth).append("/").append(month).append("/").append(year);
+        select_date.setText(sb.toString());
+        updateTimeSlots();
     }
 
     public void selectDateClicked(){
@@ -115,7 +128,7 @@ public class PatAppointmentActivity extends AppCompatActivity {
                                 }
 
                                 ArrayList<String> timeSlots=generateTimeSlots(appointments);
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatAppointmentActivity.this, android.R.layout.simple_spinner_item, timeSlots);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatAppointmentActivity.this, R.layout.spinner_item, timeSlots);
                                 spinner_time.setAdapter(adapter);
                             }
                         }
@@ -156,7 +169,7 @@ public class PatAppointmentActivity extends AppCompatActivity {
 
             for(int x=0;x<appointments.size();x++)
             {
-                if(appointments.get(x).time.equals(time))
+                if(appointments.get(x).getTime().equals(time))
                 {
                     found=true;
                     break;
@@ -170,5 +183,10 @@ public class PatAppointmentActivity extends AppCompatActivity {
         }
 
         return times;
+    }
+
+    public void bookClicked()
+    {
+        Appointment a=new Appointment();
     }
 }

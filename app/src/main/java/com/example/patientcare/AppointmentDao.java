@@ -26,35 +26,35 @@ public class AppointmentDao {
 
     public Task<Void> updateAppointmentData(Appointment a) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("date", a.date);
-        map.put("doctor_id", a.doctor_id);
-        map.put("done", a.done);
-        map.put("patient_id", a.patient_id);
-        map.put("patient_name", a.patient_name);
-        map.put("prescription", a.prescription);
-        map.put("room", a.room);
-        map.put("time", a.time);
+        map.put("date", a.getDate());
+        map.put("doctor_id", a.getDoctor_id());
+        map.put("done", a.isDone());
+        map.put("patient_id", a.getPatient_id());
+        map.put("patient_name", a.getPatient_name());
+        map.put("prescription", a.getPrescription());
+        map.put("room", a.getRoom());
+        map.put("time", a.getTime());
 
-        return db.collection("Appointment").document(a.appointment_id).set(map);
+        return db.collection("Appointment").document(a.getAppointment_id()).set(map);
     }
 
     public Task<DocumentReference> addAppointmentData(Appointment a) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("date", a.date);
-        map.put("doctor_id", a.doctor_id);
-        map.put("done", a.done);
-        map.put("patient_id", a.patient_id);
-        map.put("patient_name", a.patient_name);
-        map.put("prescription", a.prescription);
-        map.put("room", a.room);
-        map.put("time", a.time);
+        map.put("date", a.getDate());
+        map.put("doctor_id", a.getDoctor_id());
+        map.put("done", a.isDone());
+        map.put("patient_id", a.getPatient_id());
+        map.put("patient_name", a.getPatient_name());
+        map.put("prescription", a.getPrescription());
+        map.put("room", a.getRoom());
+        map.put("time", a.getTime());
 
         return db.collection("Appointment").add(map)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
 //                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                        a.appointment_id = documentReference.getId();
+                        a.setAppointment_id( documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -68,5 +68,13 @@ public class AppointmentDao {
     public Task<QuerySnapshot> getAppointments(boolean isDone)
     {
         return db.collection("Appointment").whereEqualTo("done", isDone).get();
+    }
+
+    public Task<QuerySnapshot> getDoctorId(Doctor d) {
+        return db.collection("Doctor").whereEqualTo("email", d.getEmail()).get();
+    }
+
+    public Task<QuerySnapshot> getAppointments(String id,String date){
+        return db.collection("Appointment").whereEqualTo("doctor_id", id).whereEqualTo("date",date).get();
     }
 }

@@ -15,6 +15,8 @@ public class RecyclerView_Doctors extends AppCompatActivity implements DoctorAda
     private DoctorAdapter doctorAdapter;
     private ArrayList<Doctor> doctors;
 
+    private Patient patient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,7 @@ public class RecyclerView_Doctors extends AppCompatActivity implements DoctorAda
 
         Intent intent=getIntent();
         doctors=(ArrayList<Doctor>) intent.getSerializableExtra("doctors");
+        patient=(Patient) intent.getSerializableExtra("patient");
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -35,6 +38,7 @@ public class RecyclerView_Doctors extends AppCompatActivity implements DoctorAda
         Doctor d=doctors.get(index);
         Intent i=new Intent(this, PatAppointmentActivity.class);
         i.putExtra("doctor",d);
+        i.putExtra("patient",patient);
         startActivityForResult(i,1);
     }
 }

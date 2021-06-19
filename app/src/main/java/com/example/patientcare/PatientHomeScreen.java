@@ -15,6 +15,8 @@ public class PatientHomeScreen extends AppCompatActivity {
     private Button OpenCurrAppoint;
     private Button OpenPrevAppoint;
 
+    private Patient patient;
+
     private final int requestCode_findDoctor;
 
     public PatientHomeScreen()
@@ -27,6 +29,9 @@ public class PatientHomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home_screen);
+
+        Intent i=getIntent();
+        patient=(Patient) i.getSerializableExtra("patient");
 
         OpenFindADoctor = findViewById(R.id.OpenFindADoctor);
         OpenPrescriptions = findViewById(R.id.OpenPrescriptions);
@@ -57,6 +62,7 @@ public class PatientHomeScreen extends AppCompatActivity {
 
     private void FindADoctorClicked() {
         Intent i=new Intent(this,FindDoctor.class);
+        i.putExtra("patient",patient);
         startActivityForResult(i,requestCode_findDoctor);
     }
 

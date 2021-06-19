@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
@@ -64,12 +65,21 @@ public class MainActivity extends AppCompatActivity {
                     daoSignin.checkPatient().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                            if(task.getResult().isEmpty())
+
+                            Patient p=null;
+
+                            for(DocumentSnapshot d:task.getResult())
+                            {
+                                p=d.toObject(Patient.class);
+                            }
+
+                            if(p==null)
                             {
                                 Intent i=new Intent(MainActivity.this, DoctorHomeScreen.class);
                                 startActivity(i);
                             }else{
                                 Intent i=new Intent(MainActivity.this,PatientHomeScreen.class);
+                                i.putExtra("patient",p);
                                 startActivity(i);
                             }
                         }

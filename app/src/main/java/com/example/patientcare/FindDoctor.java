@@ -33,6 +33,8 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
     private  Button ent;
     private Button nuero;
 
+    private Patient patient;
+
     private DAOFindDoctor daoFindDoctor;
 
     private ArrayList<Doctor> doctors;
@@ -41,6 +43,9 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speciality_ui);
+
+        Intent i=getIntent();
+        patient=(Patient) i.getSerializableExtra("patient");
 
         skin=findViewById(R.id.button_skin);
         gyne=findViewById(R.id.button_gyne);
@@ -111,6 +116,7 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
 
                     Intent i=new Intent(FindDoctor.this,RecyclerView_Doctors.class);
                     i.putExtra("doctors",doctors);
+                    i.putExtra("patient",patient);
                     startActivityForResult(i,1);
                 }
             }
