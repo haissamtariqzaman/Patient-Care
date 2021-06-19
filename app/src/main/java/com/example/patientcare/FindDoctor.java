@@ -1,6 +1,7 @@
 package com.example.patientcare;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -111,6 +112,7 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
                     for(QueryDocumentSnapshot doc : task.getResult())
                     {
                         Doctor d=doc.toObject(Doctor.class);
+                        d.setDocId(doc.getId());
                         doctors.add(d);
                     }
 
@@ -121,5 +123,17 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            Intent intent=new Intent();
+            setResult(RESULT_OK,intent);
+            super.onBackPressed();
+        }
     }
 }

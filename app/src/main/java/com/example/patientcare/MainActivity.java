@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                             for(DocumentSnapshot d:task.getResult())
                             {
                                 p=d.toObject(Patient.class);
+                                p.setPatientId(d.getId());
                             }
 
                             if(p==null)
