@@ -1,16 +1,17 @@
 package com.example.patientcare;
 
-public class Appointment {
-    private String patient_id;
-    private String doctor_id;
-    private String date;
-    private String time;
-    private String room;
-    private boolean done;
-    private String prescription;
-    private String appointment_id;
-    private String patient_name;
+import java.io.Serializable;
 
+public class Appointment implements Serializable {
+    String patient_name;
+    String patient_id;
+    String doctor_id;
+    String date;
+    String time;
+    String room;
+    boolean done;
+    String prescription;
+    String appointment_id;
     public Appointment(){
 
     }
@@ -24,6 +25,19 @@ public class Appointment {
         this.room = room;
         done = false;
         prescription = "";
+        appointment_id = "";
+    }
+
+    public Appointment(String patientName, String patientId, String doctorId, String date, String time, String room, String prescription,
+                       boolean done) {
+        this.patient_name = patientName;
+        this.patient_id = patientId;
+        this.doctor_id = doctorId;
+        this.date = date;
+        this.time = time;
+        this.room = room;
+        this.done = done;
+        this.prescription = prescription;
         appointment_id = "";
     }
 

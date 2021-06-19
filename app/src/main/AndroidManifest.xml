@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PatientCare">
-        <activity android:name=".recycler_item_apointment"></activity>
-        <activity android:name=".PatAppointmentActivity" />
-        <activity android:name=".RecyclerView_Doctors" />
+        <activity android:name=".AppointmentDetail"></activity>
         <activity android:name=".AppointmentActivity" />
         <activity
             android:name=".DoctorHomeScreen"
             android:label="Doctor&apos;s Home" />
+        <activity android:name=".PatAppointmentActivity"></activity>
+        <activity android:name=".recycler_item_apointment"></activity>
+        <activity android:name=".RecyclerView_Doctors" />
+            android:label="Doctor's Home"/>
         <activity android:name=".FindDoctor" />
         <activity android:name=".PatientHomeScreen" />
         <activity android:name=".PatientSignup" />

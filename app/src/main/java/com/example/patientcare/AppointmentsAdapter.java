@@ -15,9 +15,15 @@ import java.util.List;
 public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapter.AppointmentViewHolder> {
 
     List<Appointment> appointments;
+    AppointmentClickListener appointmentClickListener;
 
     public AppointmentsAdapter(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public AppointmentsAdapter(List<Appointment> appointments, AppointmentClickListener appointmentClickListener) {
+        this.appointments = appointments;
+        this.appointmentClickListener = appointmentClickListener;
     }
 
     @NonNull
@@ -26,13 +32,20 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     public AppointmentViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.appointment_item, parent, false);
-
-        return new AppointmentViewHolder(view);
+        AppointmentViewHolder appointmentViewHolder = new AppointmentViewHolder(view);
+        return appointmentViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull AppointmentsAdapter.AppointmentViewHolder holder, int position) {
         holder.bind(appointments.get(position));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                appointmentClickListener.onAppointmentClick(appointments.get(position));
+            }
+        });
     }
 
     @Override
@@ -51,10 +64,14 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         }
 
         public void bind(Appointment appointment) {
-            patient_name.setText(appointment.getPatient_name());
-            date.setText(appointment.getDate());
-            time.setText(appointment.getTime());
-            room.setText(appointment.getRoom());
+            patient_name.setText("Name: " + appointment.getPatient_name());
+            date.setText("Date: " + appointment.getDate());
+            time.setText("Time: " + appointment.getTime());
+            room.setText("Room: " + appointment.getRoom());
         }
+    }
+
+    interface AppointmentClickListener {
+        public void onAppointmentClick(Appointment appointment);
     }
 }
