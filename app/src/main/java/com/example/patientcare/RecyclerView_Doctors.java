@@ -33,7 +33,7 @@ public class RecyclerView_Doctors extends AppCompatActivity implements DoctorAda
     @Override
     public void onDoctorClicked(int index) {
         Doctor d=doctors.get(index);
-        Intent i=new Intent(this,AppointmentActivity.class);
+        Intent i=new Intent(this, PatAppointmentActivity.class);
         i.putExtra("doctor",d);
         startActivityForResult(i,1);
     }

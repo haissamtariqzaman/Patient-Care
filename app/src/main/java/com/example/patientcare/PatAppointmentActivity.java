@@ -14,7 +14,6 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AppointmentActivity extends AppCompatActivity {
+public class PatAppointmentActivity extends AppCompatActivity {
 
     private TextView dr_name;
     private TextView dr_speciality;
@@ -84,7 +83,7 @@ public class AppointmentActivity extends AppCompatActivity {
         int month=cal.get(Calendar.MONTH);
         int day=cal.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog=new DatePickerDialog(AppointmentActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,dateSetListener,year,month,day);
+        DatePickerDialog datePickerDialog=new DatePickerDialog(PatAppointmentActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,dateSetListener,year,month,day);
         datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
         datePickerDialog.show();
@@ -116,7 +115,7 @@ public class AppointmentActivity extends AppCompatActivity {
                                 }
 
                                 ArrayList<String> timeSlots=generateTimeSlots(appointments);
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AppointmentActivity.this, android.R.layout.simple_spinner_item, timeSlots);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatAppointmentActivity.this, android.R.layout.simple_spinner_item, timeSlots);
                                 spinner_time.setAdapter(adapter);
                             }
                         }
