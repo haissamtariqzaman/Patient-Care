@@ -1,8 +1,9 @@
 package com.example.patientcare;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class User {
+public class User implements Serializable {
     private String name;
     private String email;
     private String phoneNumber;
@@ -11,6 +12,11 @@ public class User {
     private int month;
     private int year;
     private String password;
+
+    public User()
+    {
+
+    }
 
     public User(String name, String email, String phoneNumber, String address, int date, int month, int year, String password) {
         this.name = name;

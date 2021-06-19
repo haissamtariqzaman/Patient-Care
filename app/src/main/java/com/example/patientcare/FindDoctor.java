@@ -3,12 +3,23 @@ package com.example.patientcare;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CancellationSignal;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class FindDoctor extends AppCompatActivity implements View.OnClickListener {
@@ -21,6 +32,10 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
     private Button consultant;
     private  Button ent;
     private Button nuero;
+
+    private DAOFindDoctor daoFindDoctor;
+
+    private ArrayList<Doctor> doctors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,68 +59,62 @@ public class FindDoctor extends AppCompatActivity implements View.OnClickListene
         consultant.setOnClickListener(this);
         ent.setOnClickListener(this);
         nuero.setOnClickListener(this);
+
+        daoFindDoctor=new DAOFindDoctor();
+        doctors=new ArrayList<>();
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.button_skin:
-                skinClicked();
+                Clicked("Skin Specialist");
                 break;
             case R.id.button_gyne:
-                gyneClicked();
+                Clicked("Gynecologist");
                 break;
             case R.id.button_urologist:
-                uroloClicked();
+                Clicked("Urologist");
                 break;
             case R.id.button_child:
-                childClicked();
+                Clicked("Child Specialist");
                 break;
             case R.id.button_ortho:
-                orthoClicked();
+                Clicked("Orthopedic Surgeon");
                 break;
             case R.id.button_consultant:
-                consultClicked();
+                Clicked("Consultant Physician");
                 break;
             case R.id.button_ent:
-                entClicked();
+                Clicked("ENT Specialist");
                 break;
             case R.id.button_neuro:
-                neuroClicked();
+                Clicked("Neurologist");
                 break;
         }
     }
 
-    public void skinClicked()
+    public void Clicked(String s)
     {
+        daoFindDoctor.getDoctors(s).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful())
+                {
+                    doctors.clear();
 
-    }
-    public void gyneClicked()
-    {
+                    for(QueryDocumentSnapshot doc : task.getResult())
+                    {
+                        Doctor d=doc.toObject(Doctor.class);
+                        doctors.add(d);
+                    }
 
+                    Intent i=new Intent(FindDoctor.this,RecyclerView_Doctors.class);
+                    i.putExtra("doctors",doctors);
+                    startActivityForResult(i,1);
+                }
+            }
+        });
     }
-    public void uroloClicked()
-    {
 
-    }
-    public void childClicked()
-    {
-
-    }
-    public void orthoClicked()
-    {
-
-    }
-    public void consultClicked()
-    {
-
-    }
-    public void entClicked()
-    {
-
-    }
-    public void neuroClicked()
-    {
-
-    }
 }
