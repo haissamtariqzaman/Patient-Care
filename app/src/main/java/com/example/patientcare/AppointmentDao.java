@@ -77,4 +77,14 @@ public class AppointmentDao {
     public Task<QuerySnapshot> getAppointments(String id,String date){
         return db.collection("Appointment").whereEqualTo("doctor_id", id).whereEqualTo("date",date).get();
     }
+
+    public Task<QuerySnapshot> getAppointmentsCurrent(Patient p)
+    {
+        return db.collection("Appointment").whereEqualTo("patient_id",p.getPatientId()).whereEqualTo("done",false).get();
+    }
+
+    public Task<QuerySnapshot> getAppointmentsPrev(Patient p)
+    {
+        return db.collection("Appointment").whereEqualTo("patient_id",p.getPatientId()).whereEqualTo("done",true).get();
+    }
 }

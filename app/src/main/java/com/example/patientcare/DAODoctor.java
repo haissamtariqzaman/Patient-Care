@@ -3,6 +3,7 @@ package com.example.patientcare;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -35,5 +36,10 @@ public class DAODoctor {
         map.put("speciality",d.getSpeciality());
 
         return db.collection("Doctor").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(map);
+    }
+
+    public Task<DocumentSnapshot> getDoctor(String id)
+    {
+        return db.collection("Doctor").document(id).get();
     }
 }

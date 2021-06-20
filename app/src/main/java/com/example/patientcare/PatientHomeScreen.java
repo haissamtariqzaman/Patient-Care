@@ -1,5 +1,6 @@
 package com.example.patientcare;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -7,7 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import java.util.concurrent.*;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class PatientHomeScreen extends AppCompatActivity {
     private Button OpenFindADoctor;
@@ -16,6 +26,11 @@ public class PatientHomeScreen extends AppCompatActivity {
     private Button OpenPrevAppoint;
 
     private Patient patient;
+
+    private ArrayList<Appointment> currAppointments;
+    private ArrayList<Appointment> prevAppointments;
+
+    private AppointmentDao appointmentDao;
 
     private final int requestCode_findDoctor;
 
@@ -32,6 +47,11 @@ public class PatientHomeScreen extends AppCompatActivity {
 
         Intent i=getIntent();
         patient=(Patient) i.getSerializableExtra("patient");
+
+        currAppointments=new ArrayList<>();
+        prevAppointments=new ArrayList<>();
+
+        appointmentDao=new AppointmentDao();
 
         OpenFindADoctor = findViewById(R.id.OpenFindADoctor);
         OpenPrescriptions = findViewById(R.id.OpenPrescriptions);
@@ -67,11 +87,50 @@ public class PatientHomeScreen extends AppCompatActivity {
     }
 
     private void PrescriptionsClicked() {
+
     }
 
     private void CurrAppointClicked() {
+        currAppointments.clear();
+        appointmentDao.getAppointmentsCurrent(patient).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    for(DocumentSnapshot d:task.getResult())
+                    {
+                        Appointment a=d.toObject(Appointment.class);
+                        currAppointments.add(a);
+                    }
+
+                    Intent i=new Intent(PatientHomeScreen.this,PatViewAppointment.class);
+                    i.putExtra("appointments",currAppointments);
+                    i.putExtra("patient",patient);
+                    startActivityForResult(i,1);
+                }
+            }
+        });
     }
 
     private void PrevAppointClicked() {
+        prevAppointments.clear();
+        appointmentDao.getAppointmentsPrev(patient).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    for(DocumentSnapshot d:task.getResult())
+                    {
+                        Appointment a=d.toObject(Appointment.class);
+                        prevAppointments.add(a);
+                    }
+
+                    Intent i=new Intent(PatientHomeScreen.this,PatViewAppointment.class);
+                    i.putExtra("appointments",prevAppointments);
+                    i.putExtra("patient",patient);
+                    startActivityForResult(i,1);
+                }
+            }
+        });
     }
 }

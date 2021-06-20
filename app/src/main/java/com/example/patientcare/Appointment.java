@@ -12,8 +12,9 @@ public class Appointment implements Serializable {
     boolean done;
     String prescription;
     String appointment_id;
-    public Appointment(){
+    Doctor d;
 
+    public Appointment(){
     }
 
     public Appointment(String patientName, String patientId, String doctorId, String date, String time, String room) {
