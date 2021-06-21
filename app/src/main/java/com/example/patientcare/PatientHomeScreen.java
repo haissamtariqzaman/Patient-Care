@@ -87,7 +87,24 @@ public class PatientHomeScreen extends AppCompatActivity {
     }
 
     private void PrescriptionsClicked() {
-        
+        prevAppointments.clear();
+        appointmentDao.getAppointmentsPrev(patient).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    for(DocumentSnapshot d:task.getResult())
+                    {
+                        Appointment a=d.toObject(Appointment.class);
+                        prevAppointments.add(a);
+                    }
+
+                    Intent i=new Intent(PatientHomeScreen.this,Prescription_recycler.class);
+                    i.putExtra("appointments",prevAppointments);
+                    startActivityForResult(i,1);
+                }
+            }
+        });
     }
 
     private void CurrAppointClicked() {

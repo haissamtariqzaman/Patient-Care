@@ -19,8 +19,6 @@ public class ViewPrescription extends AppCompatActivity {
     private TextView dr_name;
     private TextView prescription;
 
-    private DAODoctor daoDoctor;
-
     private Appointment appointment;
 
     @Override
@@ -35,24 +33,7 @@ public class ViewPrescription extends AppCompatActivity {
         dr_name=findViewById(R.id.dr_name);
         prescription=findViewById(R.id.prescription);
 
-        daoDoctor=new DAODoctor();
-
-        updateDoctor();
         AppointDate.setText(appointment.getDate());
         prescription.setText(appointment.getPrescription());
-    }
-
-    public void updateDoctor()
-    {
-        daoDoctor.getDoctor(appointment.doctor_id).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful())
-                {
-                    appointment.d=task.getResult().toObject(Doctor.class);
-                    dr_name.setText(appointment.d.getName());
-                }
-            }
-        });
     }
 }
