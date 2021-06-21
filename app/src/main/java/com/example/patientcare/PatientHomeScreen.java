@@ -87,7 +87,7 @@ public class PatientHomeScreen extends AppCompatActivity {
     }
 
     private void PrescriptionsClicked() {
-
+        
     }
 
     private void CurrAppointClicked() {
