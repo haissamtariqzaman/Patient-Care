@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PatientCare">
-        <activity android:name=".PatViewAppointment"></activity>
+        <activity android:name=".ViewPrescription"></activity>
+        <activity android:name=".PatViewAppointment" />
         <activity android:name=".PatientsActivities" />
         <activity android:name=".AppointmentDetail" />
         <activity android:name=".AppointmentActivity" />

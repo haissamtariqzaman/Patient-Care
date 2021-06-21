@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewPrescription">
+
+
+    <LinearLayout
+        android:id="@+id/appointment_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        android:id="@+id/AppointNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:gravity="center"
+        android:text="Appointmen #"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingVertical="10dp"/>
+
+    <TextView
+        android:id="@+id/AppointDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="23 june 2021"
+        android:textColor="@color/common_google_signin_btn_text_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingVertical="10dp"/>
+
+    <TextView
+        android:id="@+id/dr_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:gravity="center"
+        android:text="Dr. Ahmed"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingVertical="10dp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text=" Prescription :"
+            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/prescription"
+            android:layout_width="match_parent"
+            android:layout_height="361dp"
+            android:paddingLeft="7dp"
+            android:paddingTop="5dp"
+            android:text="Panadol \nSetamaet\nRigix"
+            android:textSize="20sp">
+
+        </TextView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
