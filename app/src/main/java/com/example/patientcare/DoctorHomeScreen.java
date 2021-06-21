@@ -24,7 +24,7 @@ public class DoctorHomeScreen extends AppCompatActivity {
         OpenCurrAppoint = findViewById(R.id.OpenCurrAppoint);
         OpenPrevAppoint = findViewById(R.id.OpenPrevAppoint);
         welcom = findViewById(R.id.doctor_welcome);
-        welcom.setText("Welcome Dr. " + doctor.getName());
+        welcom.setText("Welcome " + doctor.getName());
 
         OpenCurrAppoint.setOnClickListener(new View.OnClickListener() {
             @Override

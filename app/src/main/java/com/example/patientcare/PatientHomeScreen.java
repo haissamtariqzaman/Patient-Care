@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import java.util.concurrent.*;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ public class PatientHomeScreen extends AppCompatActivity {
     private Button OpenPrescriptions;
     private Button OpenCurrAppoint;
     private Button OpenPrevAppoint;
+    private TextView name;
 
     private Patient patient;
 
@@ -57,6 +60,7 @@ public class PatientHomeScreen extends AppCompatActivity {
         OpenPrescriptions = findViewById(R.id.OpenPrescriptions);
         OpenCurrAppoint = findViewById(R.id.OpenCurrAppoint);
         OpenPrevAppoint = findViewById(R.id.OpenPrevAppoint);
+        name=findViewById(R.id.doctor_welcome);
 
         OpenFindADoctor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +82,7 @@ public class PatientHomeScreen extends AppCompatActivity {
             public void onClick(View v) { PrevAppointClicked(); }
         });
 
+        name.setText("Welcome Mr. "+patient.getName());
     }
 
     private void FindADoctorClicked() {

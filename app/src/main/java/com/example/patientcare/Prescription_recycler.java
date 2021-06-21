@@ -22,6 +22,7 @@ public class Prescription_recycler extends AppCompatActivity implements Prescrip
     private RecyclerView recyclerView;
     private Prescription_Adapter prescription_adapter;
     private ArrayList<Appointment> app;
+    private ArrayList<Appointment> appointments;
 
     private DAODoctor daoDoctor;
 
@@ -30,6 +31,7 @@ public class Prescription_recycler extends AppCompatActivity implements Prescrip
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_doctors);
 
+        appointments=new ArrayList<Appointment>();
         daoDoctor=new DAODoctor();
 
         Intent intent=getIntent();
@@ -39,13 +41,13 @@ public class Prescription_recycler extends AppCompatActivity implements Prescrip
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        prescription_adapter=new Prescription_Adapter(app,this,this);
+        prescription_adapter=new Prescription_Adapter(appointments,this,this);
         recyclerView.setAdapter(prescription_adapter);
     }
 
     @Override
     public void onPrescriptionClicked(int index) {
-        Appointment a=app.get(index);
+        Appointment a=appointments.get(index);
         Intent i=new Intent(this, ViewPrescription.class);
         i.putExtra("appointment",a);
         startActivityForResult(i,1);
@@ -60,6 +62,8 @@ public class Prescription_recycler extends AppCompatActivity implements Prescrip
                     if (task.isSuccessful())
                     {
                         appointment.d=task.getResult().toObject(Doctor.class);
+                        appointments.add(appointment);
+                        prescription_adapter.updateAppointments(appointments);
                     }
                 }
             });

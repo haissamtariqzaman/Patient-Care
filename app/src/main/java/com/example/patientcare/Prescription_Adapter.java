@@ -56,7 +56,7 @@ public class Prescription_Adapter extends RecyclerView.Adapter<Prescription_Adap
 
         public ViewHolder(@NonNull View itemView,onClickListener listener) {
             super(itemView);
-            docName=itemView.findViewById(R.id.textView17);
+            docName=itemView.findViewById(R.id.textView15);
             date=itemView.findViewById(R.id.textView20);
             time=itemView.findViewById(R.id.textView25);
             onClickListener=listener;
@@ -71,5 +71,11 @@ public class Prescription_Adapter extends RecyclerView.Adapter<Prescription_Adap
 
     public interface onClickListener{
         void onPrescriptionClicked(int index);
+    }
+
+    public void updateAppointments(ArrayList<Appointment> a)
+    {
+        app=a;
+        notifyDataSetChanged();
     }
 }
