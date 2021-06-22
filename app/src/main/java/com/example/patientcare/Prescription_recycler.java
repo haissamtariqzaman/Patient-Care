@@ -38,6 +38,7 @@ public class Prescription_recycler extends AppCompatActivity implements Prescrip
         app=(ArrayList<Appointment>) intent.getSerializableExtra("appointments");
         updateDoctor();
 
+
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

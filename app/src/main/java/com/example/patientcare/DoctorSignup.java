@@ -70,52 +70,14 @@ public class DoctorSignup extends AppCompatActivity {
     public void signupClicked()
     {
         String d=date.getText().toString();
-        int dt=0,month=0,year=0;
+        Doctor doc=new Doctor(name.getText().toString(),email.getText().toString(),ph.getText().toString(),addr.getText().toString(),0,0,0,pass.getText().toString(),speciality.getSelectedItem().toString());
+        Intent intent=new Intent(this,SignupService.class);
+        intent.putExtra("doctor",doc);
+        intent.putExtra("date",d);
+        startService(intent);
 
-        StringBuilder sb=new StringBuilder();
-
-        for(int x=0;x<d.length();x++) {
-            if (d.charAt(x) == '/') {
-                if (dt == 0) {
-                    dt = parseInt(sb.toString());
-                    sb = new StringBuilder();
-                } else {
-                    month = parseInt(sb.toString());
-                    sb = new StringBuilder();
-                }
-            } else {
-                sb = sb.append(d.charAt(x));
-            }
-        }
-        year=parseInt(sb.toString());
-
-        Doctor doc=new Doctor(name.getText().toString(),email.getText().toString(),ph.getText().toString(),addr.getText().toString(),dt,month,year,pass.getText().toString(),speciality.getSelectedItem().toString());
-        Log.d("mydchck",doc.toString());
-
-        daoDoctor.addDoctor(doc).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                if (task.isSuccessful())
-                {
-                    daoDoctor.addDoctorData(doc).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<Void> task) {
-                            if (task.isSuccessful())
-                            {
-                                Toast.makeText(DoctorSignup.this,"Signup Complete!",Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent();
-                                setResult(RESULT_OK,intent);
-                                DoctorSignup.this.onBackPressed();
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull @NotNull Exception e) {
-                            Toast.makeText(DoctorSignup.this,"Signup Failed!",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }
-        });
+        Intent intent1=new Intent();
+        setResult(RESULT_OK,intent1);
+        DoctorSignup.this.onBackPressed();
     }
 }
