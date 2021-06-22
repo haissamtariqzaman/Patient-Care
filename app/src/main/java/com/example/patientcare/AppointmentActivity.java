@@ -98,4 +98,11 @@ public class AppointmentActivity extends AppCompatActivity implements Appointmen
         intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
+
+    @Override
+    public void onPatientClick(Appointment appointment) {
+        Intent intent = new Intent(this, PatientDetailActivity.class);
+        intent.putExtra("patient_id", appointment.patient_id);
+        startActivity(intent);
+    }
 }

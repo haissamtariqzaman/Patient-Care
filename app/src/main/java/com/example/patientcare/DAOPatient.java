@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
 public class DAOPatient {
-    private final FirebaseFirestore db;
+    final FirebaseFirestore db;
     private final FirebaseAuth mAuth;
 
     public DAOPatient()

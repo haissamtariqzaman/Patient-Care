@@ -46,6 +46,13 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
                 appointmentClickListener.onAppointmentClick(appointments.get(position));
             }
         });
+
+        holder.patient_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                appointmentClickListener.onPatientClick(appointments.get(position));
+            }
+        });
     }
 
     @Override
@@ -73,5 +80,6 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
 
     interface AppointmentClickListener {
         public void onAppointmentClick(Appointment appointment);
+        public void onPatientClick(Appointment appointment);
     }
 }
