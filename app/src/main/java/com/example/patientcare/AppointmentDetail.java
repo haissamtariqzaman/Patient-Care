@@ -55,7 +55,7 @@ public class AppointmentDetail extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(AppointmentDetail.this, "Appointment updated successfully!", Toast.LENGTH_LONG).show();
-                        finish();
+                        finish();//destroy the current activity and move back to previous activity
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

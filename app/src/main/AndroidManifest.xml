@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.patientcare">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,26 +11,64 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PatientCare">
-        <activity android:name=".Prescription_recycler" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ViewPrescription" android:screenOrientation="portrait" />
-        <activity android:name=".PatViewAppointment" android:screenOrientation="portrait" />
-        <activity android:name=".PatientsActivities" android:screenOrientation="portrait" />
-        <activity android:name=".AppointmentDetail" android:screenOrientation="portrait" />
-        <activity android:name=".AppointmentActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PatientDetailActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <activity
+            android:name=".Prescription_recycler"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewPrescription"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatViewAppointment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientsActivities"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AppointmentDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AppointmentActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DoctorHomeScreen"
-            android:label="Doctor&apos;s Home" android:screenOrientation="portrait" />
-        <activity android:name=".PatAppointmentActivity" android:screenOrientation="portrait" />
-        <activity android:name=".recycler_item_apointment" android:screenOrientation="portrait"/>
-        <activity android:name=".RecyclerView_Doctors" android:screenOrientation="portrait" />
-        <activity android:name=".FindDoctor" android:screenOrientation="portrait" />
-        <activity android:name=".PatientHomeScreen" android:screenOrientation="portrait" />
-        <activity android:name=".PatientSignup" android:screenOrientation="portrait" />
-        <activity android:name=".DoctorSignup" android:screenOrientation="portrait" />
-        <activity android:name=".SignupActivity" android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+            android:label="Doctor&apos;s Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatAppointmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recycler_item_apointment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecyclerView_Doctors"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FindDoctor"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientHomeScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientSignup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DoctorSignup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
