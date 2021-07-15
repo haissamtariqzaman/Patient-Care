@@ -4,7 +4,9 @@ Patient-Care built in java
 Patient care is an android app that is an appoiontment booking and managing app for patients and doctor.
 
 This application was written in Java and GUI was designed is XML.
+
 Firebase is used for authentication.
+
 Firebase is used for data storage.
 
 ## Project Contribution
