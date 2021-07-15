@@ -9,6 +9,6 @@ Firebase is used for data storage.
 
 ## Project Contribution
 
-- Business and Data Layer: [Haissam Tariq](https://github.com/haissamtariqzaman)
-- Business and Data Layer: [Zaid Naeem](https://github.com/ZaidNx)
-- GUI: [Yousaf](https://github.com/yousaf23)
+- GUI: [Yousaf Irshad](https://github.com/yousaf23)
+- Business Layer: [Haissam Tariq](https://github.com/haissamtariqzaman) and [Zaid Naeem](https://github.com/ZaidNx)
+- Data Layer: [Zaid Naeem](https://github.com/ZaidNx) and [Haissam Tariq](https://github.com/haissamtariqzaman)
